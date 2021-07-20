@@ -1,4 +1,7 @@
 package com.bridgelabz.io;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +21,7 @@ public class EmployeePayrollService
         employeePayrollService.readEmployeePayrollData(consoleInputReader);
         employeePayrollService.writeEmployeePayrollData(IOService.FILE_IO);
     }
-    private void readEmployeePayrollData(Scanner consoleInputReader)
+    public void readEmployeePayrollData(IOService consoleInputReader)
     {
         System.out.println("Enter Employee ID: ");
         int id = consoleInputReader.nextInt();
