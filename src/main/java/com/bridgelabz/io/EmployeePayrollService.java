@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class EmployeePayrollService
 {
+    public enum IOService {CONSOLE_IO, FILE_IO, DB_IO, REST_IO}
     private List<EmployeePayrollData> employeePayrollList;
     public EmployeePayrollService(List<EmployeePayrollData> employeePayrollList)
     {
@@ -15,7 +16,7 @@ public class EmployeePayrollService
         EmployeePayrollService employeePayrollService = new EmployeePayrollService(employeePayrollList);
         Scanner consoleInputReader = new Scanner(System.in);
         employeePayrollService.readEmployeePayrollData(consoleInputReader);
-        employeePayrollService.writeEmployeePayrollData();
+        employeePayrollService.writeEmployeePayrollData(IOService.FILE_IO);
     }
     private void readEmployeePayrollData(Scanner consoleInputReader)
     {
@@ -27,8 +28,15 @@ public class EmployeePayrollService
         double salary = consoleInputReader.nextDouble();
         employeePayrollList.add(new EmployeePayrollData(id,name,salary));
     }
-    private void writeEmployeePayrollData()
+    public void writeEmployeePayrollData(IOService ioService)
     {
-        System.out.println("\n Writing Employee Payroll Roaster to Console\n"+employeePayrollList);
+        if (ioService.equals(IOService.CONSOLE_IO))
+        {
+            System.out.println("\nWriting Employee Payroll To Console:\n" + employeePayrollList);
+        }
+        else if (ioService.equals(IOService.FILE_IO))
+        {
+            new EmployeePayrollFileService().writeData(employeePayrollList);
+        }
     }
 }
