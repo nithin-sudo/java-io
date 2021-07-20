@@ -1,6 +1,7 @@
 package com.bridgelabz.employeepayrolltest;
 import com.bridgelabz.io.EmployeePayrollData;
 import com.bridgelabz.io.EmployeePayrollService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 public class  EmployeePayrollNIOTest
@@ -14,7 +15,10 @@ public class  EmployeePayrollNIOTest
                     new EmployeePayrollData(3, "adani", 300000550.0)
             };
             EmployeePayrollService employeePayrollService;
-           employeePayrollService = new EmployeePayrollService(Arrays.asList(arrayOfEmps));
+            employeePayrollService = new EmployeePayrollService(Arrays.asList(arrayOfEmps));
             employeePayrollService.writeEmployeePayrollData(EmployeePayrollService.IOService.FILE_IO);
+            employeePayrollService.printData(EmployeePayrollService.IOService.FILE_IO);
+            long entries = employeePayrollService.countEntries(EmployeePayrollService.IOService.FILE_IO);
+            Assertions.assertEquals(3,entries);
         }
 }
