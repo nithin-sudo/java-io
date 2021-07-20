@@ -1,6 +1,7 @@
 package com.bridgelabz.io;
 
 import com.bridgelabz.fileutils.FileUtils;
+import com.bridgelabz.watchservice.Java8WatchServiceExample;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -56,6 +57,7 @@ public class NIOFileAPITest
     {
         Path dir = Paths.get(HOME + "/" +PLAY_WITH_NIO);
         Files.list(dir).filter(Files :: isRegularFile).forEach(System.out :: println);
+        new Java8WatchServiceExample(dir).processEvents();
     }
 }
 
